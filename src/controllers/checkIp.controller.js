@@ -1,6 +1,6 @@
 
 const checkIp = async (req, res) => {
-    const clientIp = req.ip || req.connection.remoteAddress;
+    const clientIp = req.headers.get('x-forwarded-for')
 
     const IP = '192.168.43.153'
 
@@ -9,7 +9,6 @@ const checkIp = async (req, res) => {
     .json(
         {
             "ip": req.ip,
-            "connection": req.connection.remoteAddress,
             "clientIp": clientIp,
             "access": clientIp == IP ? true : false
         }
