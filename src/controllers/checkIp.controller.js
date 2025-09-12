@@ -1,6 +1,8 @@
 
 const checkIp = async (req, res) => {
-    const clientIp = req.headers.get('x-forwarded-for')
+    const clientIp = req.headers.get('x-forwarded-for') || '::1'
+    console.log("headeres = ", req.headers);
+    
 
     const IP = '192.168.43.153'
 
