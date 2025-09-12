@@ -1,0 +1,16 @@
+{
+  "name": "gps-backend",
+  "version": "1.0.0",
+  "description": "Check client IP to check on same network",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/index.js"
+  },
+  "author": "Joshi Jay",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
