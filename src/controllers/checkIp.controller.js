@@ -1,6 +1,6 @@
 
 const checkIp = async (req, res) => {
-    const clientIp = req.headers.get('x-forwarded-for') || '::1'
+    const clientIp = '::1'
     console.log("headeres = ", req.headers);
     
 
