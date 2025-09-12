@@ -1,7 +1,7 @@
 
 const checkIp = async (req, res) => {
-    const clientIp = req.headers['cf-connecting-ip'] || '::1'
-    console.log("headeres = ", req.headers);
+    const clientIp = req.clientIp || '::1'
+    console.log("headeres = ", req);
 //     headeres =  {
 //   host: 'check-ip-test-backend.onrender.com',
 //   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0',
@@ -33,7 +33,7 @@ const checkIp = async (req, res) => {
     
 
     // const IP = '192.168.43.153'
-    const IP = '157.32.44.199'
+    const IP = '157.32.44.199' // 157.32.46.80, 157.32.44.159, 157.32.46.253
 
     res
     .status(200)
