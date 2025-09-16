@@ -14,6 +14,10 @@ function generateToken(rootId) {
     return jwt.sign(payload, SECRET, { expiresIn: SLOT_DURATION });
 }
 
+app.listen(port, () => {
+    console.log("Server is running on port ", port);
+})
+
 wss.on("connection", (ws) => {
   console.log("Client connected");
 
@@ -27,7 +31,3 @@ wss.on("connection", (ws) => {
 
   ws.on("close", () => clearInterval(interval));
 });
-
-app.listen(port, () => {
-    console.log("Server is running on port ", port);
-})
