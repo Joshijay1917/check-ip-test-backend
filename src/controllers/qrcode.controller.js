@@ -38,7 +38,7 @@ const scanQR = async (req, res) => {
         //     return res.status(400).json({ success: false, error: "Token already used" });
         // }
         if (usedTokens.has(userId)) {
-            return res.status(400).json({ error: "Token already used" });
+            return res.status(400).json({ success: false,  error: "Token already used" });
         }
 
         // await redis.set(uniqueKey, "1", "EX", SLOT_DURATION);
