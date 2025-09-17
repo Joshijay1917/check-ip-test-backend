@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 // const redis = new Redis();
 const usedTokens = new Map();
 
-var SLOT_DURATION = 1; // seconds
+const SLOT_DURATION = 20; // seconds
 const SECRET = "6392d28e799c85c929f3336df3b95473"
 
 function generateToken(rootId) {
@@ -15,8 +15,6 @@ function generateToken(rootId) {
 }
 
 const generateQR = async (req, res) => {
-    const { duration } = req.body
-    SLOT_DURATION = duration
      const ROOT_SESSION_ID = "room123";
      const token = generateToken(ROOT_SESSION_ID);
      res.json({ token });
