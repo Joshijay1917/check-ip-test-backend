@@ -1,14 +1,23 @@
 // import { v4 as uuid } from 'uuid'
 // import Redis from "ioredis";
+import jwt from "jsonwebtoken"
 
 // const redis = new Redis();
-const SECRET = "anjsdnHAShadjadjSJdaksdASdfd"
 const usedTokens = new Map();
 
+const SLOT_DURATION = 20; // seconds
+const SECRET = "6392d28e799c85c929f3336df3b95473"
+
+function generateToken(rootId) {
+    const slot = Math.floor(Date.now() / 1000 / SLOT_DURATION);
+    const payload = { rootId, slot };
+    return jwt.sign(payload, SECRET, { expiresIn: SLOT_DURATION });
+}
+
 const generateQR = async (req, res) => {
-    // const ROOT_SESSION_ID = "room123";
-    // const token = generateToken(ROOT_SESSION_ID);
-    // res.json({ token });
+     const ROOT_SESSION_ID = "room123";
+     const token = generateToken(ROOT_SESSION_ID);
+     res.json({ token });
 }
 
 const scanQR = async (req, res) => {
