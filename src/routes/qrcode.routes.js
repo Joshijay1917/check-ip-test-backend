@@ -3,7 +3,7 @@ import { generateQR, scanQR } from "../controllers/qrcode.controller.js";
 
 const router = Router()
 
-router.route("/qr-code").get(generateQR)
+router.route("/qr-code").post(generateQR)
 router.route("/scan").post(scanQR)
 
 export default router
