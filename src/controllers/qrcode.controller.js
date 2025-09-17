@@ -37,14 +37,14 @@ const scanQR = async (req, res) => {
         // if (already) {
         //     return res.status(400).json({ success: false, error: "Token already used" });
         // }
-        if (usedTokens.has(uniqueKey)) {
+        if (usedTokens.has(userId)) {
             return res.status(400).json({ error: "Token already used" });
         }
 
         // await redis.set(uniqueKey, "1", "EX", SLOT_DURATION);
-        usedTokens.set(key, true);
+        usedTokens.set(userId, true);
 
-        setTimeout(() => usedTokens.delete(key), SLOT_DURATION * 1000);
+        // setTimeout(() => usedTokens.delete(userId), SLOT_DURATION * 1000);
 
         res.json({ success: true, message: "Attendance marked" });
     } catch (error) {
