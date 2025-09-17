@@ -3,7 +3,7 @@ import { WebSocketServer } from "ws";
 import jwt from "jsonwebtoken"
 
 const SLOT_DURATION = 20; // seconds
-const SECRET = "anjsdnHAShadjadjSJdaksdASdfd"
+const SECRET = "6392d28e799c85c929f3336df3b95473"
 
 const port = 3000;
 const wss = new WebSocketServer({ port });
