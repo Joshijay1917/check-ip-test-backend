@@ -54,7 +54,7 @@ const scanQR = async (req, res) => {
 
         // setTimeout(() => usedTokens.delete(userId), SLOT_DURATION * 1000);
 
-        res.json({ success: true, message: "Attendance marked" });
+        res.json({ success: true, message: "Attendance marked" })
     } catch (error) {
         console.error(err);
         return res.status(401).json({ success: false, error: "Invalid or expired token" });
