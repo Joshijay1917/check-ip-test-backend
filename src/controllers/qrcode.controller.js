@@ -21,10 +21,14 @@ const generateQR = async (req, res) => {
 }
 
 const scanQR = async (req, res) => {
-    const { token, userId } = req.body;
+    const { token, user } = req.body;
+    const userId = user.name;
+    // const { sessionId, rollNo, name } = req.body;
 
     try {
         console.log("Decoding", token, " - ", userId);
+
+        const io = req.app.get("io");
 
         const decoded = jwt.verify(token, SECRET)
 
@@ -43,6 +47,10 @@ const scanQR = async (req, res) => {
 
         // await redis.set(uniqueKey, "1", "EX", SLOT_DURATION);
         usedTokens.set(userId, true);
+        io.emit("attendanceMarked", {
+            userId,
+            time: new Date()
+          });
 
         // setTimeout(() => usedTokens.delete(userId), SLOT_DURATION * 1000);
 

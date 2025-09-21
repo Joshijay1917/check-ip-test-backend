@@ -6,6 +6,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+
 import checkIpRouter from './routes/checkNetwork.routes.js'
 import qrRouter from './routes/qrcode.routes.js'
 
