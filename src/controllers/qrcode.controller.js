@@ -21,12 +21,12 @@ const generateQR = async (req, res) => {
 }
 
 const scanQR = async (req, res) => {
-    const { token, user } = req.body;
-    const userId = user.name;
+    const { token, userId } = req.body;
+    const username = userId.name;
     // const { sessionId, rollNo, name } = req.body;
 
     try {
-        console.log("Decoding", token, " - ", userId);
+        console.log("Decoding", token, " - ", username);
 
         const io = req.app.get("io");
 
@@ -35,20 +35,20 @@ const scanQR = async (req, res) => {
         console.log("decoded ", decoded);
 
         const { rootId, slot } = decoded;
-        const uniqueKey = `${rootId}:${slot}:${userId}`;
+        const uniqueKey = `${rootId}:${slot}:${username}`;
 
         // const already = await redis.get(uniqueKey);
         // if (already) {
         //     return res.status(400).json({ success: false, error: "Token already used" });
         // }
-        if (usedTokens.has(userId)) {
+        if (usedTokens.has(username)) {
             return res.status(400).json({ success: false,  error: "Token already used" });
         }
 
         // await redis.set(uniqueKey, "1", "EX", SLOT_DURATION);
-        usedTokens.set(userId, true);
+        usedTokens.set(username, true);
         io.emit("attendanceMarked", {
-            userId,
+            username,
             time: new Date()
           });
 
